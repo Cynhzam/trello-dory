@@ -35,7 +35,7 @@ window.addEventListener("load", cargarPagina);
         e.preventDefault();
         formulario.classList.add("none");
         agregarLista();
-        // agregarContenedor();
+        agregarContenedor();
     }
 
     function agregarLista(){
@@ -63,6 +63,18 @@ window.addEventListener("load", cargarPagina);
         linkTarjeta.addEventListener("click", agregarTarjeta);
     }
 
+    function agregarContenedor() {
+        span.classList.remove("none");
+
+        var nuevoContenedor = document.createElement("div");
+
+        nuevoContenedor.classList.add("nuevo-contenedor");
+
+        nuevoContenedor.insertBefore(span, nuevoContenedor.children[0]);
+        nuevoContenedor.insertBefore(formulario, nuevoContenedor.children[0]);
+        contenedorPadre.appendChild(nuevoContenedor);
+    }
+
     function agregarTarjeta(){
 
         this.classList.add("none");
@@ -70,7 +82,6 @@ window.addEventListener("load", cargarPagina);
         var nuevaTarjeta = document.createElement("form");
         var textarea = document.createElement("textarea");
         var btnAñadir = document.createElement("button");
-        var btnEliminar = document.createElement("button");
 
         nuevaTarjeta.classList.add("nueva-tarjeta");
         textarea.classList.add("textarea");
@@ -79,12 +90,10 @@ window.addEventListener("load", cargarPagina);
         this.parentElement.appendChild(nuevaTarjeta);
         nuevaTarjeta.appendChild(textarea);
         nuevaTarjeta.appendChild(btnAñadir);
-        nuevaTarjeta.appendChild(btnEliminar);
 
         textarea.focus();
 
         btnAñadir.textContent = "Añadir";
-        btnEliminar.textContent = "X";
 
         btnAñadir.addEventListener("click", añadirTarjeta);
     }
@@ -93,7 +102,7 @@ window.addEventListener("load", cargarPagina);
 
         var contenedorTarjeta = document.createElement("div");
 
-        contenedorTarjeta.classList.add("contenedor-tarjeta");
+        contenedorTarjeta.setAttribute("id", "nuevoContenedor");
 
         contenedorTarjeta.textContent = this.parentElement.children[0].value;
 
